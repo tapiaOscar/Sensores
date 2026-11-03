@@ -147,12 +147,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     // Registra el listener del sensor y arranca el aviso de "sin datos"
     private fun registrarSensor() {
         val sensor = sensorLuz ?: return
-
-        // Evita registrar dos veces el mismo listener: al aceptar el permiso se
-        // ejecutan el callback del permiso Y onResume, y el segundo registro
-        // devolvería false aunque el primero haya funcionado.
-        sensorManager.unregisterListener(this)
-
         val ok = sensorManager.registerListener(
             this, sensor, SensorManager.SENSOR_DELAY_UI
         )
